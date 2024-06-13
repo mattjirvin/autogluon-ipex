@@ -27,17 +27,17 @@ MODEL_CONFIGS = {
         "default_batch_size": 16,
     },
     "chronos-t5-small": {
-        "num_gpus": 1,
+        "num_gpus": 0,
         "default_torch_dtype": "bfloat16",
         "default_batch_size": 16,
     },
     "chronos-t5-base": {
-        "num_gpus": 1,
+        "num_gpus": 0,
         "default_torch_dtype": "bfloat16",
         "default_batch_size": 16,
     },
     "chronos-t5-large": {
-        "num_gpus": 1,
+        "num_gpus": 0,
         "default_torch_dtype": "bfloat16",
         "default_batch_size": 8,
     },
@@ -178,9 +178,9 @@ class ChronosModel(AbstractTimeSeriesModel):
         return model
 
     def _is_gpu_available(self) -> bool:
-        import torch.cuda
+        import torch.xpu
 
-        return torch.cuda.is_available()
+        return torch.xpu.is_available()
 
     @property
     def ag_default_config(self) -> Dict[str, Any]:
